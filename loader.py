@@ -4,6 +4,7 @@
 import time
 import json
 import os
+import inspect
 
 import urllib3
 
@@ -18,7 +19,8 @@ imageurlsplitted = imageurl.split("/")
 imageurlsplitted.reverse()
 filename = imageurlsplitted[0]
 image = http.request('GET', imageurl)
-if not os.path.isdir("images"):
-    os.makedirs("images")
-if not os.path.isfile("images/" + filename):
-    open("images/" + filename, 'wb').write(image.data)
+path = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+if not os.path.isdir(path + "/images"):
+    os.makedirs(path + "/images")
+if not os.path.isfile(path + "/images/" + filename):
+    open(path + "/images/" + filename, 'wb').write(image.data)
