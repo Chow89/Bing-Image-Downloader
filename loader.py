@@ -20,4 +20,5 @@ filename = imageurlsplitted[0]
 image = http.request('GET', imageurl)
 if not os.path.isdir("images"):
     os.makedirs("images")
-open("images/" + filename, 'wb').write(image.data)
+if not os.path.isfile("images/" + filename):
+    open("images/" + filename, 'wb').write(image.data)
