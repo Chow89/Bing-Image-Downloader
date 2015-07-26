@@ -27,17 +27,15 @@ imageurlsplitted.reverse()
 filename = imageurlsplitted[0].split("_")[0]
 extension = imageurlsplitted[0].split(".")[1]
 
-# get images
-imagebig = http.request('GET', imageurlbig)
-imagesmall = http.request('GET', imageurlsmall)
-
-# save images
+# get and save images
 path = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 if not os.path.isdir(path + "/images/1920x1080"):
     os.makedirs(path + "/images/1920x1080")
 if not os.path.isdir(path + "/images/1366x768"):
     os.makedirs(path + "/images/1366x768")
 if not os.path.isfile(path + "/images/1920x1080/" + filename + "." + extension):
+    imagebig = http.request('GET', imageurlbig)
     open(path + "/images/1920x1080/" + filename + "." + extension, 'wb').write(imagebig.data)
 if not os.path.isfile(path + "/images/1366x768/" + filename + "." + extension):
+    imagesmall = http.request('GET', imageurlsmall)
     open(path + "/images/1366x768/" + filename + "." + extension, 'wb').write(imagesmall.data)
