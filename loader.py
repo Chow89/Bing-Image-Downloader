@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
+import datetime
 import time
 import json
 import os
@@ -24,7 +24,7 @@ imageurlsmall = imageurlbig.replace("1920x1080", "1366x768")
 # create filename for local files
 imageurlsplitted = imageurlbig.split("/")
 imageurlsplitted.reverse()
-filename = imageurlsplitted[0].split("_")[0]
+filename = datetime.datetime.now().strftime('%Y-%m-%d') + " - " + imageurlsplitted[0].split("_")[0]
 extension = imageurlsplitted[0].split(".")[1]
 
 # get and save images
